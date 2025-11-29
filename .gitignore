@@ -1,0 +1,8 @@
+.vs/
+artifacts/
+packages/
+bin/
+obj/
+*.user
+*.suo
+.editorconfig
