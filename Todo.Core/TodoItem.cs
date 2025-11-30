@@ -1,13 +1,17 @@
-﻿// <copyright file="TodoItem.cs" company="Gannin Kirill">
-// Copyright (c) Gannin Kirill. All rights reserved.
-// </copyright>
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Todo.Core
 {
     public class TodoItem
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        [JsonInclude]
+        public Guid Id { get; internal set; } = Guid.NewGuid();
+
+        [JsonInclude]
         public string Title { get; private set; }
+
+        [JsonInclude]
         public bool IsDone { get; private set; }
 
         public TodoItem(string title)
@@ -21,9 +25,7 @@ namespace Todo.Core
         public void Rename(string newTitle)
         {
             if (string.IsNullOrWhiteSpace(newTitle))
-            {
                 throw new ArgumentException("Title is required", nameof(newTitle));
-            }
             Title = newTitle.Trim();
         }
     }
